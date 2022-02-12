@@ -1,4 +1,4 @@
-package ru.Itransition.task3.security;
+package ru.Itransition.task3.security.jwt;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
