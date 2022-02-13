@@ -18,10 +18,12 @@
                         <a class="nav-link disabled">Disabled</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <form class="form-inline my-2 my-lg-0" action="#" method="post">
+                    <button class="btn btn-outline-success my-2 my-sm-0">Exit</button>
                 </form>
+                <div class="form-inline my-2 my-lg-0">
+                    <a class="btn btn-outline-success my-2 mr-2 my-sm-0" th:href="@{/login}">Login</a>
+                </div>
             </div>
         </div>
     </nav>
