@@ -13,8 +13,8 @@ import javax.validation.Valid;
 
 @Controller
 public class LoginController {
-    private final UserService userService;
 
+    private final UserService userService;
 
     @Autowired
     public LoginController(UserService userService) {
@@ -23,7 +23,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginUser( Model model) {
-        model.addAttribute("title", "Вход");
+        model.addAttribute("title", "Enter");
         return "login";
     }
 
@@ -31,12 +31,12 @@ public class LoginController {
     public String registrationUserGet(Model model){
         UserRegistrationRepr userRegistrationRepr = new UserRegistrationRepr();
         model.addAttribute("user", userRegistrationRepr);
-        model.addAttribute("people", userRegistrationRepr);
         return "register";
     }
 
+
     @PostMapping("/register")
-    public String registrationNewUserPost(
+    public String registrationUserPost(
             @Valid UserRegistrationRepr userRegistrationRepr, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return "register";
