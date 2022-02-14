@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.Itransition.task3.service.UserRegistrationRepr;
+import ru.Itransition.task3.service.UserRegistration;
 import ru.Itransition.task3.service.UserService;
 import javax.validation.Valid;
 
@@ -28,24 +28,24 @@ public class LoginController {
 
     @GetMapping("/register")
     public String registrationUserGet(Model model){
-        UserRegistrationRepr userRegistrationRepr = new UserRegistrationRepr();
-        model.addAttribute("user", userRegistrationRepr);
+        UserRegistration userRegistration = new UserRegistration();
+        model.addAttribute("user", userRegistration);
         return "register";
     }
 
     @PostMapping("/register")
     public String registrationUserPost(
-            @Valid UserRegistrationRepr userRegistrationRepr, BindingResult bindingResult){
+            @Valid UserRegistration userRegistration, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return "register";
         }
 
-        if (!userRegistrationRepr.getPassword().equals(userRegistrationRepr.getRepeatPassword())){
+        if (!userRegistration.getPassword().equals(userRegistration.getRepeatPassword())){
             bindingResult.rejectValue("password","", "passwords not equals");
             return "register";
         }
 
-        userService.create(userRegistrationRepr);
+        userService.register(userRegistration);
         return "redirect:/login";
     }
 }
