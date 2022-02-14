@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.Itransition.task3.service.UserRegistrationRepr;
 import ru.Itransition.task3.service.UserService;
-
 import javax.validation.Valid;
 
 @Controller
@@ -34,7 +33,6 @@ public class LoginController {
         return "register";
     }
 
-
     @PostMapping("/register")
     public String registrationUserPost(
             @Valid UserRegistrationRepr userRegistrationRepr, BindingResult bindingResult){
@@ -50,8 +48,4 @@ public class LoginController {
         userService.create(userRegistrationRepr);
         return "redirect:/login";
     }
-
-
-
-
 }
