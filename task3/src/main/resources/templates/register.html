@@ -24,17 +24,17 @@
                     <small class="form-text text-danger" th:each="err:${#fields.errors('username')}">Validation error</small>
                 </div>
                 <div class="form-group">
-                    <label for="username">User name</label>
+                    <label for="username">First name</label>
                     <input type="text" id="firstName" th:field="${user.firstName}" class="form-control" placeholder="Enter first name">
                     <small class="form-text text-danger" th:each="err:${#fields.errors('firstName')}">Validation error</small>
                 </div>
                 <div class="form-group">
-                    <label for="username">User name</label>
+                    <label for="username">Last name</label>
                     <input type="text" id="lastName" th:field="${user.lastName}" class="form-control" placeholder="Enter last name">
                     <small class="form-text text-danger" th:each="err:${#fields.errors('lastName')}">Validation error</small>
                 </div>
                 <div class="form-group">
-                    <label for="username">User name</label>
+                    <label for="username">email</label>
                     <input type="text" id="email" th:field="${user.email}" class="form-control" placeholder="Enter email">
                     <small class="form-text text-danger" th:each="err:${#fields.errors('email')}">Validation error</small>
                 </div>
