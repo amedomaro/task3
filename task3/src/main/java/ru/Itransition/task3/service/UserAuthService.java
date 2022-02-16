@@ -3,8 +3,6 @@ package ru.Itransition.task3.service;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Optional;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
