@@ -8,17 +8,63 @@
 
 <body>
 <header th:insert="header :: header"></header>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js">
+</script>
+<script type="text/javascript">
+    ((function ($) {
+        $.fn.checkboxTable = function () {
+            target = this;
+
+            $(target).on('click', 'thead :checkbox', function () {
+                var check = this;
+                $(this).parents('table').find('tbody :checkbox').each(function () {
+                    if ($(check).is(':checked')) {
+                        $(this).prop('checked', true);
+                        $(this).parents('tr').addClass('selected');
+                    } else {
+                        $(this).prop('checked', false);
+                        $(this).parents('tr').removeClass('selected');
+                    }
+                });
+            });
+
+            $(target).on('click', 'tbody :checkbox', function () {
+                var parents = $(this).parents('table');
+                if ($(this).is(':checked')) {
+                    $(this).parents('tr').addClass('selected');
+                    $(parents).find('thead :checkbox').prop('checked', true);
+                } else {
+                    $(this).parents('tr').removeClass('selected');
+                    if ($(parents).find('tbody :checkbox:checked').length == 0) {
+                        $(parents).find('thead :checkbox').prop('checked', false);
+                    }
+                }
+            });
+
+            $(target).on('click', 'tbody tr', function (event) {
+                if (event.target.tagName == 'TH' || event.target.tagName == 'TD') {
+                    $(this).find(':checkbox').trigger('click');
+                }
+            });
+        };
+    })(jQuery));
+</script>
 <div class="container mt-5">
     <br>
     <h1> All Users</h1>
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-secondary">Block</button>
-        <button type="button" class="btn btn-secondary">Unlock</button>
-        <button type="button" class="btn btn-secondary">Delete</button>
-    </div>
-
     <table class="table table-hover">
         <thead>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <form th:action="'/users/blockUnblock/' + ${name} " method="get">
+                <button class="btn btn-secondary" type="submit">Block</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0" th:action="'users/allUnblocked'" method="get">
+                <button class="btn btn-secondary" type="submit">ALL Unblock</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0" method="post">
+                <a class="btn btn-secondary" th:action="'/users/delete/' + ${id} " method="get">DELETE</a>
+            </form>
+        </div>
         <tr>
             <th scope="col">
                 <div>
@@ -32,16 +78,19 @@
             <th scope="col">Date registration</th>
             <th scope="col">Last enter</th>
             <th scope="col">Status</th>
+            <th scope="col">TEST BUTTON</th>
         </tr>
         </thead>
 
         <tbody>
-        <div th:each="el: ${user}" >
+        <div th:each="el: ${user}">
             <tr>
                 <th scope="row">
-                    <div>
-                        <input class="form-check-input" type="checkbox" th:value="${el.id}">
-                    </div>
+                    <form th:name="${el.username}">
+                        <div>
+                            <input class="form-check-input" type="checkbox" th:value="${el.id}">
+                        </div>
+                    </form>
                 </th>
                 <td><p th:text="${el.username}"/></td>
                 <td><p th:text="${el.firstName}"/></td>
@@ -50,10 +99,22 @@
                 <td><p th:text="${el.created}"/></td>
                 <td><p th:text="${el.updated}"/></td>
                 <td><p th:text="${el.status}"/></td>
+                <td>
+                    <form th:action="'/users/blockUnblock/' + ${el.id} " method="get">
+                        <button class="btn btn-secondary" type="submit">Block</button>
+                    </form>
+                    <form th:action="'/users/delete/' + ${el.id} " method="get">
+                        <button class="btn btn-secondary" type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         </div>
+
         </tbody>
     </table>
+    <script>
+        $('.table').checkboxTable();
+    </script>
 </div>
 
 </body>
