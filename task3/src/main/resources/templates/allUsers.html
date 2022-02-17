@@ -100,8 +100,8 @@
                 <td><p th:text="${el.updated}"/></td>
                 <td><p th:text="${el.status}"/></td>
                 <td>
-                    <form th:action="'/users/blockUnblock/' + ${el.id} " method="get">
-                        <button class="btn btn-secondary" type="submit">Block</button>
+                    <form th:action="'/users/blocked/' + ${el.id} " method="get">
+                        <button class="btn btn-secondary" type="submit">Block\Unblock</button>
                     </form>
                     <form th:action="'/users/delete/' + ${el.id} " method="get">
                         <button class="btn btn-secondary" type="submit">Delete</button>
@@ -112,6 +112,7 @@
 
         </tbody>
     </table>
+    <input type="submit" value="Submit"/>
     <script>
         $('.table').checkboxTable();
     </script>
