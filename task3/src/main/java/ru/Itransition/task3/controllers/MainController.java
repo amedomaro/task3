@@ -12,5 +12,4 @@ public class MainController {
         model.addAttribute("title", "The main page");
         return "homePage";
     }
-
 }
