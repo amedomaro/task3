@@ -1,7 +1,6 @@
 package ru.Itransition.task3.model;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.util.List;
 
