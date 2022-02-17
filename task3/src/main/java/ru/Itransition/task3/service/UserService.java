@@ -7,7 +7,6 @@ import ru.Itransition.task3.model.Status;
 import ru.Itransition.task3.model.User;
 import ru.Itransition.task3.repository.RoleRepository;
 import ru.Itransition.task3.repository.UserRepository;
-
 import java.util.Date;
 
 @Service
