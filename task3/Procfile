@@ -1,0 +1,1 @@
+web: java -jar target/task3-1.0.jar
